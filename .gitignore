@@ -5,4 +5,4 @@ __pycache__/
 
 student_model.pkl
 scaler.pkl
-label_encoder.pkls
+label_encoder.pklsgit add .
