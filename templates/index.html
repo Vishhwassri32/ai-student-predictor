@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Student Performance Predictor</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <h1>AI Student Performance Predictor</h1>
+            <p>Predict academic outcomes and receive personalized AI recommendations based on student habits.</p>
+        </header>
+
+        <main class="main-content">
+            <section class="card form-card">
+                <h2>Student Information</h2>
+                <form action="/predict" method="POST">
+                    
+                    <div class="input-group">
+                        <label for="study_hours">Weekly Study Hours</label>
+                        <input type="number" id="study_hours" name="study" step="0.5" min="0" max="168" placeholder="e.g. 15.5" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="attendance">Attendance Rate (%)</label>
+                        <input type="number" id="attendance" name="attendance" min="0" max="100" placeholder="e.g. 85" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="participation">Class Participation</label>
+                        <select id="participation" name="participation" required>
+                            <option value="" disabled selected>Select participation level</option>
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary">Predict Performance</button>
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                    </div>
+
+                </form>
+            </section>
+
+            {% if prediction %}
+            <section class="card result-card">
+                <h2>Prediction Summary</h2>
+                
+                <div class="grade-badge grade-{{ prediction }}">
+                    Grade {{ prediction }}
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric">
+                        <span class="metric-label">Confidence Score</span>
+                        <span class="metric-value">{{ confidence }}%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Risk Level</span>
+                        <span class="metric-value risk-badge risk-{{ risk | lower }}">{{ risk }}</span>
+                    </div>
+                </div>
+
+                <div class="recommendations">
+                    <h3>AI Recommendations</h3>
+                    <p>{{ recommendation }}</p>
+                </div>
+            </section>
+            {% endif %}
+        </main>
+
+        <footer class="footer">
+            <p>Developed by <strong>Vishwas Srivastava</strong></p>
+        </footer>
+    </div>
+    </body>
+</html>

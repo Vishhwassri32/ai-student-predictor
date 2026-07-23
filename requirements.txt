@@ -1,7 +1,10 @@
-streamlit
+flask
 pandas
 numpy
 scikit-learn
 joblib
 matplotlib
 seaborn
+html
+css
+javascript
