@@ -5,6 +5,3 @@ scikit-learn
 joblib
 matplotlib
 seaborn
-html
-css
-javascript
