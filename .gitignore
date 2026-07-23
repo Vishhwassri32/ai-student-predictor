@@ -3,6 +3,6 @@ __pycache__/
 
 *.pyc
 
-student_model.pkl
-scaler.pkl
-label_encoder.pklsgit add .
+# student_model.pkl
+# scaler.pkl
+# label_encoder.pkl
